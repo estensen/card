@@ -1,32 +1,59 @@
+import java.awt.*;
+
 /**
  * Created by estensen on 21/03/2017.
  */
 public class Card {
-    private final int rank;
-    private final int suit;
+    private final Rank rank;
+    private final Suit suit;
 
-    // Possible suits
-    public final static int DIAMONDS = 1;
-    public final static int CLUBS    = 2;
-    public final static int HEARTS   = 3;
-    public final static int SPADES   = 4;
+    public enum Rank {
+        ACE(1, "Ace"), TWO(2, "2"), THREE(3, "3"), FOUR(4, "4"), FIVE(5, "5"), SIX(6, "6"), SEVEN(7, "7"),
+        EIGHT(8, "8"), NINE(9, "9"), TEN(10, "10"), JACK(11, "Jack"), QUEEN(12, "Queen"), KING(13, "King");
+        private final int value;
+        private final String displayName;
 
-    // Possible ranks
-    public final static int ACE   = 1;
-    public final static int DEUCE = 2;
-    public final static int THREE = 3;
-    public final static int FOUR  = 4;
-    public final static int FIVE  = 5;
-    public final static int SIX   = 6;
-    public final static int SEVEN = 7;
-    public final static int EIGHT = 8;
-    public final static int NINE  = 9;
-    public final static int TEN   = 10;
-    public final static int JACK  = 11;
-    public final static int QUEEN = 12;
-    public final static int KING  = 13;
+        Rank(int value, String displayName) {
+            this.value = value;
+            this.displayName = displayName;
+        }
 
-    public Card(int rank, int suit) {
+        public int getValue() {
+            return value;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        public static Rank of(int value) {
+            return java.util.Arrays.stream(Rank.values())
+                    .filter(rank -> rank.getValue() == value)
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalArgumentException("No card with value " + value + "exists."));
+        }
+    }
+
+    public enum Suit {
+        HEARTS(Color.RED, "hearts"), DIAMONDS(Color.RED, "diamonds"), SPADES(Color.BLACK, "spades"), CLUBS(Color.BLACK, "clubs");
+        private Color color;
+        private String displayName;
+
+        Suit(Color color, String displayName) {
+            this.color = color;
+            this.displayName = displayName;
+        }
+
+        public Color getColor() {
+            return color;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+    }
+
+    public static Card(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
     }
