@@ -1,4 +1,3 @@
-import java.awt.*;
 import java.util.Random;
 
 /**
@@ -7,6 +6,10 @@ import java.util.Random;
 public class Card {
     private final Rank rank;
     private final Suit suit;
+
+    public enum Color {
+        RED, BLACK
+    }
 
     public enum Rank {
         ACE(1, "Ace"), TWO(2, "2"), THREE(3, "3"), FOUR(4, "4"), FIVE(5, "5"), SIX(6, "6"), SEVEN(7, "7"),
