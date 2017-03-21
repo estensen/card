@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.util.Random;
 
 /**
  * Created by estensen on 21/03/2017.
@@ -53,16 +54,15 @@ public class Card {
         }
     }
 
-    public static Card(Rank rank, Suit suit) {
+    public Card(Rank rank, Suit suit) {
         this.rank = rank;
         this.suit = suit;
     }
 
-    public int getRank() {
-        return rank;
-    }
-
-    public int getSuit() {
-        return suit;
+    public static Card random() {
+        Random generator = new Random();
+        Rank rank = Rank.values()[generator.nextInt(Rank.values().length)];
+        Suit suit = Suit.values()[generator.nextInt(Suit.values().length)];
+        return new Card(rank, suit);
     }
 }
