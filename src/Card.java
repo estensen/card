@@ -68,4 +68,13 @@ public class Card {
         Suit suit = Suit.values()[generator.nextInt(Suit.values().length)];
         return new Card(rank, suit);
     }
+
+    @Override
+    public String toString() {
+        return rank.getDisplayName() + " of " + suit.getDisplayName();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Card.random());
+    }
 }
