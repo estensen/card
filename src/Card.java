@@ -69,12 +69,28 @@ public class Card {
         return new Card(rank, suit);
     }
 
+    public Color getColor() {
+        return this.suit.getColor();
+    }
+
+    public Rank getRank() {
+        return this.rank;
+    }
+
+    public Suit getSuit() {
+        return this.suit;
+    }
+
     @Override
     public String toString() {
         return rank.getDisplayName() + " of " + suit.getDisplayName();
     }
 
     public static void main(String[] args) {
-        System.out.println(Card.random());
+        Card card1 = Card.random();
+        System.out.println(card1);
+        System.out.println(card1.getSuit().getDisplayName());
+        System.out.println(card1.getRank().getDisplayName());
+        System.out.println(card1.getColor());
     }
 }
